@@ -25,25 +25,6 @@ To logout from your VM, just type:
 exit
 ```
 Try logging in again. We will assume that you can do this step in future classes without issue.
-PuTTY
-PuTTY is a free telnet/SSH client for Windows that predates the native Windows OpenSSH client. Although it is not necessary to install a separate SSH client for this workshop, you may prefer PuTTY for its user-friendly interface. You can download PuTTY from here.
-Download and install PuTTY.
-Open PuTTY (find it in the Start menu).
-Enter the hostname for your VM into the “Host Name (or IP address)” box. Example:
-```text
-myName@XX.XXX.XXX.XX
-```
-Leave the default port 22 unchanged.
-Click Open to connect to your VM.
-Enter your username and password when prompted.
-After logging in, you should see a prompt like:
-```bash
-myName@ip-XXX-XX-XX-XXX:~$
-```
-To exit PuTTY, type:
-```bash
-exit
-```
 1.1.2 On a Mac
 If you are working on a Mac, open the Terminal program (found in Applications → Utilities). Use the ssh command to connect to your VM:
 ```bash
