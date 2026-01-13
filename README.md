@@ -410,7 +410,8 @@ done
 ---
 </details>
 
-# Bash Practice for Bioinformatics
+<details>
+<summary><strong><strong>Bash Practice for Bioinformatics</strong></strong></summary>
 
 This guide provides:
 - Hands-on practice exercises using FASTA and VCF files
@@ -484,8 +485,7 @@ cut -f1 variants.vcf | sort | uniq -c
 
 ---
 
-<details>
-<summary><strong></strong><strong>## 1-Week Bash Practice Plan</strong></strong></summary>
+## 1-Week Bash Practice Plan
 
 ### Day 1 – Navigation & Files
 - `ls`, `cd`, `pwd`
