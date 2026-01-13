@@ -3,7 +3,8 @@
 
 ---
 
-## Module 1 – Part I: Essential Unix/Linux
+<details>
+<summary>## Module 1 – Part I: Essential Unix/Linux</summary>
 
 ---
 
@@ -228,6 +229,7 @@ grep '>' example/yeast.nt | awk '{print substr($1,1,10)}'
 ```bash
 grep '>' example/yeast.nt | sed 's/>NC_//g'
 ```
+</details>
 
 # Advanced Command Line Tools
 
