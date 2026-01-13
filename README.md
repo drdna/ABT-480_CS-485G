@@ -13,23 +13,18 @@ The steps for connecting to your virtual machine (VM) differ depending on your o
 
 #### 1.1.1 On a PC
 
-Two methods for connecting from a PC: **OpenSSH/PowerShell** and **PuTTY**. Only one is needed.
-
-- **OpenSSH**: No additional installation required on modern Windows.
-- **PuTTY**: Requires installation, may be more user-friendly.
-
-##### OpenSSH/PowerShell
+##### PowerShell
 
 Open PowerShell and connect to your VM (replace `myName` and `XX.XXX.XXX.XX`):
 
 ```bash
-ssh myName@XX.XXX.XXX.XX
+ssh myName@
 ```
 
 Enter your password when prompted. After login, the prompt looks like:
 
 ```bash
-myName@ip-XXX-XX-XX-XXX:~$
+myName@myName.cs.uky.edu:~$
 ```
 
 To logout:
@@ -43,13 +38,13 @@ exit
 Open Terminal (Applications → Utilities) and connect:
 
 ```bash
-ssh myName@XX.XXX.XXX.XX
+ssh myName@myName.cs.uky.edu
 ```
 
 Enter your password. After login, the prompt looks like:
 
 ```bash
-myName@ip-XXX-XX-XX-XXX:~$
+myName@myName.cs.uky.edu:~$
 ```
 
 To logout:
@@ -233,3 +228,180 @@ grep '>' example/yeast.nt | awk '{print substr($1,1,10)}'
 ```bash
 grep '>' example/yeast.nt | sed 's/>NC_//g'
 ```
+
+# Advanced Command Line Tools
+
+---
+
+## Automating Repetitive Tasks Using a Bash/Powershell Profile
+
+### On a Mac
+
+Ensure you are using the bash shell:
+
+1. Open Terminal
+2. Go to Terminal → Settings
+3. Under General, select Shells open with → Command and add the following:
+
+```bash
+/bin/bash
+```
+
+4. Close Settings
+5. Exit Terminal and restart it
+6. While in your home directory, open/create a file named `.bash_profile`:
+
+```bash
+nano .bash_profile
+```
+
+7. Edit the file to contain the following lines:
+
+```bash
+# aliases
+alias myVM="ssh myName@myName.cs.uky.edu"
+```
+*(Replace `myName` with your LinkBlue ID)*
+
+8. Close the file (Ctrl+X) and save it under the original name (`.bash_profile`)
+9. Activate the file using:
+
+```bash
+source .bash_profile
+```
+
+10. Connect to your VM with the alias you just created:
+
+```bash
+myVM
+```
+
+---
+
+### On a PC
+
+1. Open a PowerShell terminal
+2. Create a profile file:
+
+```powershell
+New-Item $profile -Type File
+```
+
+3. Open the profile file in Notepad:
+
+```powershell
+notepad $profile
+```
+
+4. Add the following text:
+
+```powershell
+function connectToVM {
+    ssh myName@myName.cs.uky.edu
+}
+
+Set-Alias myVM connectToVM
+```
+*(Replace `myName` with your LinkBlue ID)*
+
+5. Save the file and refresh the session:
+
+```powershell
+. $profile
+```
+
+6. Connect to your VM:
+
+```powershell
+myVM
+```
+
+---
+
+## Advanced Searching with `grep`
+
+1. Search for lines containing the pattern in any case (`-i`):
+
+```bash
+grep -i t example/yeast.nt
+```
+
+2. Search for either/or pattern:
+
+```bash
+grep 'V\|X' example/yeast.nt
+```
+
+3. Search for lines containing any of a set of characters:
+
+```bash
+grep [AGTC5] example/yeast.nt
+```
+
+4. Search for lines starting or ending with a character/word:
+
+```bash
+# Lines starting with 'GATC'
+grep ^GATC example/yeast.nt
+
+# Lines ending with 'GATC'
+grep GATC$ example/yeast.nt
+```
+
+5. Search for lines containing words from a separate file:
+
+```bash
+grep -f list_of_words.txt example/yeast.nt
+```
+
+6. Return only the matching characters/words:
+
+```bash
+grep -o [AGTCagtc] example/yeast.nt
+```
+
+---
+
+## Working with Bash Variables
+
+Assigning variables and using them is a key part of advanced scripting:
+
+```bash
+myVariable='Something I want to work on later'
+```
+
+1. Check the variable's value:
+
+```bash
+echo $myVariable
+```
+
+2. Perform substitution (e.g., change "Some" → "Any"):
+
+```bash
+echo ${myVariable/Some/Any}
+```
+
+3. Save the modified value as a new variable:
+
+```bash
+myNewVariable=${myVariable/Some/Any}
+echo $myNewVariable
+```
+
+4. Save the output of a function as a variable:
+
+```bash
+firstLine=$(head -1 example/yeast.nt)
+echo $firstLine
+```
+
+5. Incorporate variable assignment/substitution into a pipeline:
+
+```bash
+for jan16files in $(ls -l | awk '$6 == "Jan" && $7 == 16 {print $9}'); do
+    echo cp $jan16files ${jan16files}_backup
+done
+```
+
+---
