@@ -409,3 +409,206 @@ done
 
 ---
 </details>
+
+# Bash Practice for Bioinformatics
+
+This guide provides:
+- Hands-on practice exercises using FASTA and VCF files
+- A structured 1-week Bash practice plan
+- A concise Bash cheat sheet for bioinformatics
+- Real-world command-line one-liners used in genomics pipelines
+
+---
+
+## Practice Exercises (FASTA & VCF)
+
+### FASTA Exercises
+
+Assume `genome.fasta` contains multiple sequences.
+
+#### Count sequences
+```bash
+grep -c "^>" genome.fasta
+```
+
+#### Print sequence headers only
+```bash
+grep "^>" genome.fasta
+```
+
+#### Calculate total sequence length
+```bash
+grep -v "^>" genome.fasta | tr -d '\n' | wc -c
+```
+
+#### Extract first sequence
+```bash
+awk '/^>/{if(NR>1) exit} {print}' genome.fasta
+```
+
+#### Rename headers
+```bash
+sed 's/^>/chr_/' genome.fasta > genome_renamed.fasta
+```
+
+---
+
+### VCF Exercises
+
+Assume `variants.vcf`.
+
+#### Count variants (exclude header)
+```bash
+grep -v "^#" variants.vcf | wc -l
+```
+
+#### Extract SNPs on chromosome 1
+```bash
+awk '$1=="chr1"' variants.vcf
+```
+
+#### Filter variants by quality
+```bash
+awk '$6 > 30' variants.vcf
+```
+
+#### Extract positions only
+```bash
+cut -f2 variants.vcf
+```
+
+#### Count variants per chromosome
+```bash
+cut -f1 variants.vcf | sort | uniq -c
+```
+
+---
+
+<details>
+<summary><strong></strong><strong>## 1-Week Bash Practice Plan</strong></strong></summary>
+
+### Day 1 – Navigation & Files
+- `ls`, `cd`, `pwd`
+- `mkdir`, `rm`, `cp`, `mv`
+- `tree`
+
+### Day 2 – Viewing & Inspecting Files
+- `less`, `head`, `tail`
+- `file`, `stat`
+- Explore FASTA and VCF files
+
+### Day 3 – Searching & Filtering
+- `grep`, `grep -v`, `grep -c`
+- Regular expressions
+- Filter FASTA headers and VCF records
+
+### Day 4 – Pipes & Redirection
+- `|`, `>`, `>>`
+- Combine `grep`, `wc`, `awk`
+
+### Day 5 – awk & sed
+- Column extraction
+- Conditional filtering
+- Header cleanup
+
+### Day 6 – Variables & Loops
+```bash
+for file in *.fasta; do
+    echo $file
+done
+```
+
+### Day 7 – Remote Work & Automation
+- `ssh`, `scp`, `rsync`
+- Write simple scripts
+- Automate file processing
+
+---
+
+## Bash Cheat Sheet for Bioinformatics
+
+### Navigation
+```bash
+pwd
+ls -lh
+cd ..
+cd ~
+```
+
+### File Viewing
+```bash
+less file
+head -n 10 file
+tail -n 10 file
+```
+
+### Searching
+```bash
+grep "pattern" file
+grep -v "^#" file
+```
+
+### Counting & Sorting
+```bash
+wc -l file
+sort file | uniq -c
+```
+
+### awk
+```bash
+awk '{print $1}' file
+awk '$3 > 100' file
+```
+
+### sed
+```bash
+sed 's/old/new/' file
+```
+
+### Compression
+```bash
+zcat reads.fastq.gz | head
+```
+
+---
+
+## Real-World Genomics One-Liners
+
+### Count reads in FASTQ
+```bash
+zcat reads.fastq.gz | wc -l | awk '{print $1/4}'
+```
+
+### Count contigs
+```bash
+grep -c "^>" assembly.fasta
+```
+
+### Filter high-quality variants
+```bash
+awk '$6 >= 50' variants.vcf > highqual.vcf
+```
+
+### Get chromosome names
+```bash
+grep "^>" genome.fasta | sed 's/>//'
+```
+
+### Find longest contig
+```bash
+awk '/^>/{if(len){print len}; len=0; next}{len+=length($0)}END{print len}' genome.fasta | sort -n | tail -1
+```
+
+### Check disk usage
+```bash
+du -sh *
+```
+
+---
+
+## Next Steps
+
+- Turn repeated commands into scripts
+- Build small pipelines
+- Learn `xargs`, `parallel`, and workflow managers such as Snakemake or Nextflow
+</details>
