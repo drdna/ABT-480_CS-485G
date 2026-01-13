@@ -1,7 +1,6 @@
 # ABT-480_CS-485G
 Applied Bioinformatics Class Materials
 
-```markdown
 Module 1
 Part I: Essential Unix/Linux
 1.1 Getting connected and reconnected
@@ -255,5 +254,4 @@ grep '>' example/yeast.nt | awk '{print substr($1,1,10)}'
 Substitute pattern:
 ```bash
 grep '>' example/yeast.nt | sed 's/>NC_//g'
-```
 ```
