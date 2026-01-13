@@ -4,7 +4,7 @@
 ---
 
 <details>
-<summary><Strong>Module 1 – Part I: Essential Unix/Linux</strong></strong></summary>
+<summary><strong><strong>Module 1 – Part I: Essential Unix/Linux</strong></strong></summary>
 
 ---
 
@@ -232,7 +232,7 @@ grep '>' example/yeast.nt | sed 's/>NC_//g'
 </details>
 
 <details>
-<summary><strong>Advanced Command Line Tools</strong></summmary>
+<summary><strong><strong>Advanced Command Line Tools</strong>strong></strong></summmary>
 
 ---
 
