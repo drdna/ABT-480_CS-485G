@@ -407,9 +407,9 @@ for jan16files in $(ls -l | awk '$6 == "Jan" && $7 == 16 {print $9}'); do
 done
 ```
 
----
-
 </details>
+
+---
 
 <details>
 <summary><strong><strong>Bash Practice for Bioinformatics</strong></strong></summary>
