@@ -4,7 +4,7 @@
 ---
 
 <details>
-<summary><strong><strong>Module 1 – Part I: Essential Unix/Linux</strong></strong></summary>
+<summary><strong><strong><strong>Module 1 – Part I: Essential Unix/Linux</strong></strong></strong></summary>
 
 ---
 
