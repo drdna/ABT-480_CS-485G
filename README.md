@@ -414,7 +414,7 @@ done
 <details>
 <summary><strong><strong>Bash Practice for Bioinformatics</strong></strong></summary>
 
-
+---
 This guide provides:
 - Hands-on practice exercises using FASTA and VCF files
 - A structured 1-week Bash practice plan
