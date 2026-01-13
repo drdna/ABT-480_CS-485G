@@ -234,7 +234,7 @@ grep '>' example/yeast.nt | sed 's/>NC_//g'
 ---
 
 <details>
-<summary><strong><strong>Advanced Command Line Tools</strong></strong></summmary>
+<summary><strong><strong>Advanced Command Line Tools</strong></strong></summary>
 
 ## Automating Repetitive Tasks Using a Bash/Powershell Profile
 
